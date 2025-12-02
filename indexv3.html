@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mohit Karawde | Design Portfolio</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <!-- Google Fonts for a more 'Design' feel -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* --- DESIGN PORTFOLIO THEME (DARK MODE) --- */
+      :root {
+        --bg-body: #111111;
+        --bg-secondary: #1a1a1a;
+        --text-main: #ffffff;
+        --text-muted: #a0a0a0;
+        --accent-color: #bfa1ff; /* Soft Electric Purple */
+        --border-color: #333333;
+      }
+
+      body {
+        background-color: var(--bg-body);
+        color: var(--text-main);
+        font-family: "Inter", sans-serif; /* Clean body text */
+        overflow-x: hidden; /* Prevent horizontal scrollbars */
+      }
+
+      /* --- TYPOGRAPHY --- */
+      h1,
+      h2,
+      h3,
+      .display-1,
+      .display-4,
+      .display-5,
+      .navbar-brand {
+        font-family: "Syne", sans-serif; /* Artsy heading font */
+        font-weight: 800;
+        color: var(--text-main);
+        letter-spacing: -1px;
+      }
+
+      .text-muted {
+        color: var(--text-muted) !important;
+      }
+
+      .lead {
+        font-weight: 300;
+        letter-spacing: 0.5px;
+      }
+
+      .repeating-text {
+        font-size: 4rem;
+        font-weight: 800;
+        line-height: 1;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: transparent;
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2); /* Outline effect */
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
+      /* --- NAVBAR --- */
+      .navbar {
+        background-color: rgba(
+          17,
+          17,
+          17,
+          0.95
+        ) !important; /* Semi-transparent dark */
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-color) !important;
+      }
+      .nav-link {
+        color: var(--text-muted) !important;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: color 0.3s ease;
+      }
+      .nav-link:hover,
+      .nav-link.active {
+        color: var(--accent-color) !important;
+      }
+      .navbar-toggler {
+        filter: invert(1); /* White hamburger icon */
+        border: none;
+      }
+
+      /* --- IMAGES & CARDS --- */
+      .project-image {
+        object-fit: cover;
+        width: 100%;
+        height: 400px;
+        margin-bottom: 1rem;
+        border-radius: 8px;
+        filter: grayscale(20%); /* Artistic desaturation */
+        transition: all 0.4s ease;
+        border: 1px solid var(--border-color);
+      }
+
+      /* Hover effect: Full color + Glow */
+      .project-image:hover {
+        filter: grayscale(0%);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(191, 161, 255, 0.15); /* Purple glow */
+        border-color: var(--accent-color);
+      }
+
+      .main-visual-image {
+        object-fit: cover;
+        width: 100%;
+        height: 600px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+      }
+
+      /* --- HORIZONTAL SCROLL --- */
+      #horizontal-scroll-gallery {
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: 1.5rem;
+        scrollbar-width: thin;
+        scrollbar-color: var(--border-color) var(--bg-body);
+      }
+
+      #horizontal-scroll-gallery::-webkit-scrollbar {
+        height: 6px;
+      }
+      #horizontal-scroll-gallery::-webkit-scrollbar-track {
+        background: var(--bg-body);
+      }
+      #horizontal-scroll-gallery::-webkit-scrollbar-thumb {
+        background: var(--border-color);
+        border-radius: 3px;
+      }
+      #horizontal-scroll-gallery::-webkit-scrollbar-thumb:hover {
+        background: var(--accent-color);
+      }
+
+      .scroll-row {
+        display: flex;
+        width: fit-content;
+      }
+
+      .scroll-item {
+        width: 280px;
+        flex-shrink: 0;
+        margin-right: 2rem;
+        transition: opacity 0.3s ease;
+      }
+
+      /* Focus effect on hover */
+      .scroll-row:hover .scroll-item {
+        opacity: 0.5;
+      }
+      .scroll-row .scroll-item:hover {
+        opacity: 1;
+      }
+
+      .gallery-scroll-image {
+        object-fit: cover;
+        width: 100%;
+        height: 350px; /* Taller, more elegant proportion */
+        border-radius: 4px;
+        margin-bottom: 10px;
+      }
+
+      /* --- UTILITIES --- */
+      .hero-section {
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      /* Override Bootstrap bg-light */
+      .bg-light {
+        background-color: var(--bg-secondary) !important;
+        color: var(--text-main);
+      }
+
+      .btn-dark {
+        background-color: var(--text-main);
+        color: var(--bg-body);
+        border: none;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 10px 30px;
+      }
+      .btn-dark:hover {
+        background-color: var(--accent-color);
+        color: var(--bg-body);
+      }
+
+      /* --- MODAL --- */
+      .modal-content {
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        color: var(--text-main);
+      }
+      .btn-close {
+        filter: invert(1) grayscale(100%) brightness(200%);
+      }
+      .modal-header {
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      /* --- LINKS --- */
+      a {
+        text-decoration: none;
+      }
+      a:hover {
+        color: var(--accent-color);
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container-fluid container-lg">
+        <a class="navbar-brand" href="#">MOHIT KARAWDE</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#home"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#projects">Work</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+          <a
+            href="Resume.pdf"
+            target="_blank"
+            class="btn btn-dark ms-lg-3 btn-sm"
+            >Resume</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-lg">
+      <!-- HERO -->
+      <section id="home" class="hero-section text-center text-lg-start">
+        <div class="row w-100 align-items-center">
+          <div class="col-lg-10 mx-auto text-center">
+            <p
+              class="text-muted mb-2 text-uppercase tracking-widest"
+              style="letter-spacing: 3px"
+            >
+              Portfolio 2025
+            </p>
+            
+            <!-- RESIZED HEADLINE TO FIT PAGE -->
+            <h1
+              class="display-1 mb-4"
+              style="font-size: clamp(2rem, 5.5vw, 5.5rem); line-height: 1.1;"
+            >
+              VISUAL<br /><span style="color: var(--accent-color)"
+                >COMMUNICATION</span
+              ><br />DESIGNER
+            </h1>
+            
+            <p class="fs-5 text-muted mx-auto" style="max-width: 600px">
+              Crafting visuals that blend playful exploration with strong design
+              logic.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="py-5 my-5">
+        <div class="row justify-content-center">
+          <div class="col-lg-2 mb-4 mb-lg-0">
+            <h6 class="text-uppercase text-muted" style="letter-spacing: 2px">
+              About Me
+            </h6>
+          </div>
+          <div class="col-lg-8">
+            <p class="fs-4 lead">
+              I enjoy decoding complex visuals with hidden references but I also
+              respect designs that embody simplicity.
+            </p>
+            <p class="fs-5 text-muted">
+              Deeply influenced by cinematic storytelling and pop culture, I
+              strive to design experiences that are instantly readable but
+              reward a closer look. Currently based in Thane, Maharashtra.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- HORIZONTAL GALLERY -->
+      <section class="py-5">
+        <div class="d-flex justify-content-between align-items-end mb-4">
+          <h2 class="display-5 m-0">SELECTED WORKS</h2>
+          <span class="text-muted small">Scroll →</span>
+        </div>
+
+        <div id="horizontal-scroll-gallery">
+          <div class="scroll-row">
+            <div class="scroll-item">
+              <a
+                href="anara visiting card mockup.png"
+                data-bs-toggle="modal"
+                data-bs-target="#imageModal"
+              >
+                <img
+                  src="anara visiting card mockup.png"
+                  alt="Visiting Card Mockup"
+                  class="gallery-scroll-image"
+                />
+              </a>
+              <p class="mt-2 mb-0 fw-bold">Anara Identity</p>
+              <small class="text-muted">Branding</small>
+            </div>
+
+            <div class="scroll-item">
+              <a
+                href="CIA 1_assignment 1_Mohit Karawde.jpg"
+                data-bs-toggle="modal"
+                data-bs-target="#imageModal"
+              >
+                <img
+                  src="CIA 1_assignment 1_Mohit Karawde.jpg"
+                  alt="Concert Poster Design"
+                  class="gallery-scroll-image"
+                />
+              </a>
+              <p class="mt-2 mb-0 fw-bold">Live in Concert</p>
+              <small class="text-muted">Poster Design</small>
+            </div>
+
+            <div class="scroll-item">
+              <a
+                href="digi painting.jpg"
+                data-bs-toggle="modal"
+                data-bs-target="#imageModal"
+              >
+                <img
+                  src="digi painting.jpg"
+                  alt="Digital Still Life Painting"
+                  class="gallery-scroll-image"
+                />
+              </a>
+              <p class="mt-2 mb-0 fw-bold">Digital Still Life</p>
+              <small class="text-muted">Illustration</small>
+            </div>
+
+            <div class="scroll-item">
+              <a
+                href="Wine label barroque.png"
+                data-bs-toggle="modal"
+                data-bs-target="#imageModal"
+              >
+                <img
+                  src="Wine label barroque.png"
+                  alt="Baroque Wine Label Design"
+                  class="gallery-scroll-image"
+                />
+              </a>
+              <p class="mt-2 mb-0 fw-bold">Baroque Wine</p>
+              <small class="text-muted">Packaging</small>
+            </div>
+
+            <div class="scroll-item">
+              <a
+                href="sketch1.jpg"
+                data-bs-toggle="modal"
+                data-bs-target="#imageModal"
+              >
+                <img
+                  src="sketch1.jpg"
+                  alt="Vagabond Sketch"
+                  class="gallery-scroll-image"
+                />
+              </a>
+              <p class="mt-2 mb-0 fw-bold">Character Study</p>
+              <small class="text-muted">Sketch</small>
+            </div>
+
+            <div class="scroll-item">
+              <a
+                href="sketch2.jpg"
+                data-bs-toggle="modal"
+                data-bs-target="#imageModal"
+              >
+                <img
+                  src="sketch2.jpg"
+                  alt="Crushed Can Sketch"
+                  class="gallery-scroll-image"
+                />
+              </a>
+              <p class="mt-2 mb-0 fw-bold">Object Study</p>
+              <small class="text-muted">Sketch</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LARGE INFOGRAPHIC -->
+      <section class="py-5">
+        <div class="text-center mb-4">
+          <span
+            class="badge rounded-pill border border-light fw-normal p-2 px-3 mb-3"
+            >Featured Project</span
+          >
+          <h3 class="fw-bold">OCEAN'S ELEVEN INFOGRAPHIC</h3>
+        </div>
+        <a
+          href="EA1_Mohit Karawde_Dropbox_Imaging1_2024.jpg"
+          data-bs-toggle="modal"
+          data-bs-target="#imageModal"
+        >
+          <img
+            src="EA1_Mohit Karawde_Dropbox_Imaging1_2024.jpg"
+            alt="Ocean's Eleven Infographic"
+            class="img-fluid main-visual-image"
+          />
+        </a>
+      </section>
+    </div>
+
+    <!-- MARQUEE STRIP -->
+    <div
+      class="py-5 text-center"
+      style="
+        background-color: var(--bg-secondary);
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
+      "
+    >
+      <div class="repeating-text">BUILD. CREATE. DESIGN.</div>
+    </div>
+
+    <div class="container-lg py-5">
+      <section id="projects" class="py-5">
+        <h2 class="display-5 text-center mb-5">SEASONAL POSTERS</h2>
+
+        <div class="row g-5">
+          <div class="col-md-4">
+            <a
+              href="summer poster.png"
+              data-bs-toggle="modal"
+              data-bs-target="#imageModal"
+            >
+              <img
+                src="summer poster.png"
+                alt="Summer Project Poster"
+                class="img-fluid project-image"
+              />
+            </a>
+            <h3 class="h4 mt-3">SUMMER</h3>
+            <p class="text-muted small">
+              "When the Wind Changes" - Summer edition.
+            </p>
+          </div>
+
+          <div class="col-md-4">
+            <a
+              href="monsoon poster.png"
+              data-bs-toggle="modal"
+              data-bs-target="#imageModal"
+            >
+              <img
+                src="monsoon poster.png"
+                alt="Monsoon Project Poster"
+                class="img-fluid project-image"
+              />
+            </a>
+            <h3 class="h4 mt-3">MONSOON</h3>
+            <p class="text-muted small">
+              "When the Wind Changes" - Monsoon edition.
+            </p>
+          </div>
+
+          <div class="col-md-4">
+            <a
+              href="winter poster.png"
+              data-bs-toggle="modal"
+              data-bs-target="#imageModal"
+            >
+              <img
+                src="winter poster.png"
+                alt="Winter Project Poster"
+                class="img-fluid project-image"
+              />
+            </a>
+            <h3 class="h4 mt-3">WINTER</h3>
+            <p class="text-muted small">
+              "When the Wind Changes" - Winter edition.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="py-5 my-5 text-center">
+        <div
+          class="p-5 rounded-3 border"
+          style="
+            background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+            border-color: var(--border-color) !important;
+          "
+        >
+          <h2 class="display-5 fw-bold mb-3">LET'S CONNECT</h2>
+          <p class="col-md-8 fs-5 mx-auto text-muted mb-4">
+            Open for internships and freelance projects.
+          </p>
+          <a
+            href="mailto:youremail@example.com"
+            class="btn btn-dark btn-lg px-5"
+            >Email Mohit</a
+          >
+        </div>
+      </section>
+    </div>
+
+    <footer class="py-4 mt-5" style="border-top: 1px solid var(--border-color)">
+      <div class="container-lg d-flex justify-content-between text-muted small">
+        <p class="mb-0">&copy; 2025 Mohit Karawde.</p>
+        <p class="mb-0">Thane, Maharashtra</p>
+      </div>
+    </footer>
+
+    <!-- MODAL -->
+    <div
+      class="modal fade"
+      id="imageModal"
+      tabindex="-1"
+      aria-labelledby="imageModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-uppercase" id="imageModalLabel">
+              Project Preview
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body text-center p-0 bg-black">
+            <img
+              id="fullImage"
+              src=""
+              alt="Full Size Preview"
+              class="img-fluid"
+              style="max-height: 85vh"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const imageModal = document.getElementById("imageModal");
+        imageModal.addEventListener("show.bs.modal", function (event) {
+          const link = event.relatedTarget;
+          const imageSource = link.getAttribute("href");
+          const imageAlt = link.querySelector("img").getAttribute("alt");
+
+          const modalImage = imageModal.querySelector("#fullImage");
+          modalImage.src = imageSource;
+          modalImage.alt = imageAlt;
+
+          const modalTitle = imageModal.querySelector("#imageModalLabel");
+          modalTitle.textContent = imageAlt;
+        });
+      });
+    </script>
+  </body>
+</html>
